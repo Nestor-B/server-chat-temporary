@@ -102,6 +102,7 @@ io.on('connection', (socket) => {
         socket.emit('buscar-persona', b)
     })
     socket.on('cerrar-sesion', (dato) => {
+        delete disponibilidad[dato]
         conectados = conectados.filter(e => e.usuario !== dato)
         socket.broadcast.emit('test', conectados.slice(0, 15))
     })
@@ -168,3 +169,6 @@ io.on('connection', (socket) => {
         socket.emit('disponibilidad', disponibilidad[destinatario])
     })
 }) 
+
+
+// server: https://server-chat-temporary-luis.up.railway.app/
